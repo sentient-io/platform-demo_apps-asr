@@ -1,0 +1,387 @@
+@font-face {
+    font-family: avenir;
+    src: url(fonts/AvenirLTStd-Roman.otf)}
+  
+*{
+	margin :0px;
+	padding:0px;
+}
+  html{ 
+      font-family:'avenir';
+      }
+
+ body {
+        color: #3b3b3b;
+        /* font: 1.5em/1.5 'Helvetica Neue', Helvetica, Arial, sans-serif; */
+        font-family:'avenir';
+        background-color: #fff;
+        letter-spacing: 1px!important;
+    }
+div,button,input,input:focus{
+	outline : none;
+}
+img {
+    display: block;
+    height: auto;
+    max-width: 100%;
+}
+
+.containers {
+    background-color: #fff;
+    position: relative;
+    margin: 0 auto;
+    width: 600px;
+    min-height :470px;
+    height:470px;
+    box-shadow: 0 1px 3px 0 rgba(0,0,0,.2), 0 1px 1px 0 rgba(0,0,0,.14), 0 2px 1px -1px rgba(0,0,0,.12);
+}
+
+
+/* .bubble */
+
+.bubble {
+    background-image: linear-gradient(bottom, rgb(210,244,254) 25%, rgb(149,194,253) 100%);
+    background-image: -o-linear-gradient(bottom, rgb(210,244,254) 25%, rgb(149,194,253) 100%);
+    background-image: -moz-linear-gradient(bottom, rgb(210,244,254) 25%, rgb(149,194,253) 100%);
+    background-image: -webkit-linear-gradient(bottom, rgb(210,244,254) 25%, rgb(149,194,253) 100%);
+    background-image: -ms-linear-gradient(bottom, rgb(210,244,254) 25%, rgb(149,194,253) 100%);
+    background-image: -webkit-gradient(
+    linear,
+    left bottom,
+    left top,
+    color-stop(0.25, rgb(210,244,254)),
+    color-stop(1, rgb(149,194,253))
+    );
+    border: solid 1px rgba(0, 0, 0, 0.5);
+    /* vendor rules */
+    border-radius: 20px;
+    /* vendor rules */
+    box-shadow: inset 0 5px 5px rgba(255, 255, 255, 0.4), 0 1px 3px rgba(0, 0, 0, 0.2);
+    /* vendor rules */
+    box-sizing: border-box;
+    clear: both;
+    float: left;
+    margin-bottom: 20px;
+    font-size: 18px;
+    padding: 0px 30px;
+    position: relative;
+    text-shadow: 0 1px 1px rgba(255, 255, 255, 0.7);
+    width: auto;
+    max-width: 100%;
+    word-wrap: break-word;
+}
+
+.bubble:before, .bubble:after {
+    border-radius: 20px / 10px;
+    content: '';
+    display: block;
+    position: absolute;
+}
+
+.bubble:before {
+    border: 10px solid transparent;
+    border-bottom-color: rgba(0, 0, 0, 0.5);
+    bottom: 0;
+    left: -7px;
+    z-index: -2;
+}
+
+.bubble:after {
+    border: 8px solid transparent;
+    border-bottom-color: #d2f4fe;
+    bottom: 1px;
+    left: -5px;
+}
+
+.bubble--alt {
+    background-image: linear-gradient(bottom, rgb(172,228,75) 25%, rgb(122,205,71) 100%);
+    background-image: -o-linear-gradient(bottom, rgb(172,228,75) 25%, rgb(122,205,71) 100%);
+    background-image: -moz-linear-gradient(bottom, rgb(172,228,75) 25%, rgb(122,205,71) 100%);
+    background-image: -webkit-linear-gradient(bottom, rgb(172,228,75) 25%, rgb(122,205,71) 100%);
+    background-image: -ms-linear-gradient(bottom, rgb(172,228,75) 25%, rgb(122,205,71) 100%);
+    background-image: -webkit-gradient(
+    linear,
+    left bottom,
+    left top,
+    color-stop(0.25, rgb(172,228,75)),
+    color-stop(1, rgb(122,205,71))
+    );
+    float: right;
+}
+
+.bubble--alt:before {
+    border-bottom-color: rgba(0, 0, 0, 0.5);
+    border-radius: 20px / 10px;
+    left: auto;
+    right: -7px;
+}
+
+.bubble--alt:after {
+    border-bottom-color: #ace44b;
+    border-radius: 20px / 10px;
+    left: auto;
+    right: -5px;
+}
+.chatArea{
+	padding:20px;
+	height: 386px;
+	overflow-y: auto;
+}
+.query-container{
+    padding: 2px 0px;
+    margin: 0 auto;
+    width: 100%;
+    background-color: #f6f6f6;
+    height:40px;
+    position: relative;
+}
+input.query{
+    height: 78%;
+    border-radius: 0px;
+    width: 95%;
+    background: transparent;
+    border: none;
+    margin: 0px;
+    color: #000;
+    font-size: 21px;
+    font-weight: 100;
+}
+input.query:focus{
+	outline:none;
+	box-shadow: none;
+}
+
+input.query::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+    color: #555;/* Firefox */
+    font-size: 16px;
+}
+
+input.query:-ms-input-placeholder { /* Internet Explorer 10-11 */
+    color: #555;
+}
+
+input.query::-ms-input-placeholder { /* Microsoft Edge */
+    color: #555;
+}
+
+.query-container .fa-paper-plane{
+	position: absolute;
+	color: #000;
+	right: 15px;
+	top:10px;
+	cursor: pointer;
+}
+
+.search-tab {
+    background: transparent url("http://insights.aspecialmedia.com/images/sprite2x.png") no-repeat scroll -5px -35px / 500px 360px;
+    border-image: none;
+    border-radius: 0 10px 10px 0;
+    border: 1px solid #e6e6e6;
+    border-left:none;
+    height: 40px;
+    margin-right: 15px;
+    width: 30px;
+    cursor: pointer;    
+}
+
+header.topHeader{
+	background-color: #ffffff;
+	border-bottom: 2px solid #a4c158;
+	z-index: 9;
+	padding-top:5px;
+}				
+header.mainHeader .top_first{
+	padding: 0em 0px 0.6em;
+}
+.dashLogo {
+    width: auto;
+    float: left;
+    margin-bottom: 10px;
+}
+.accTop li{
+	display: inline-block;
+}
+.accTop li a{
+	font-size: 22px;
+}
+.pButton{
+	background-color: #a4c158;
+	color: #fff;
+	padding: 12px 30px;
+	border: none;
+	border-radius: 8px;
+	letter-spacing: 0.5px;
+	font-size: 16px;
+}
+.pButton.voic_tx{
+	padding: 20px 50px;
+	font-size: 20px;
+}
+.sButton{
+	background-color: #bc0000;
+	color: #fff;
+	padding: 6px 15px;
+	border: none;
+	border-radius: 3px;
+	letter-spacing: 0.5px;
+	color: #fff;
+}
+.btn.focus, .btn:focus, .btn:hover{
+    /* color: #7d0909; */
+    color:#716d6d;
+}
+h1.title-sent{
+	font-size: 24px;
+	color: #3b3b3b;
+    text-align : center;
+    padding-top: 10px;
+    font-weight: bold;
+}
+
+.demo_info{
+	width: 600px;
+	margin:0px auto;
+}
+.demo_info p{
+	color: #555;
+	font-size: 16px;
+	font-weight: bold;
+}
+.demo_info ul{
+	margin-left: 15px;
+}
+.demo_info ul li{
+	color: #555;
+	font-size: 14px;	
+}
+
+.chatArea::-webkit-scrollbar {
+    width: 10px;
+}
+
+/* Track */
+.chatArea::-webkit-scrollbar-track {
+    background: #f1f1f1; 
+}
+
+/* Handle */
+.chatArea::-webkit-scrollbar-thumb {
+    background: #c1c1c1; 
+    border-radius: 30px;
+}
+
+/* Handle on hover */
+.chatArea::-webkit-scrollbar-thumb:hover {
+  background: #aaa; 
+}
+.btn-micRec{
+	background: #fff;
+    border: 1px solid #bc0000;
+    border-radius: 50%;
+    width: 85px;
+    height: 85px;
+    color: #bc0000;
+    font-size: 24px;
+    /* box-shadow: 0 1px 3px 0 rgba(0,0,0,.2), 0 1px 1px 0 rgba(0,0,0,.14), 0 2px 1px -1px rgba(0,0,0,.12); */
+    /* float: left; */
+    outline: none;
+    line-height: 3;
+}
+.btn-micRec:hover{
+	background: transparent;
+}
+.btn-alignn p{
+    line-height: 45px;
+    font-size: 18px;
+    width: 100%;
+    margin-left: -13%;
+}
+.vivien_tx h4{
+	font-size: 17px;
+    line-height: 24px;
+	margin-left : 6em;
+}
+.vivien_tx {
+	padding: 4em 0px 0px 1em;
+}
+.vivien_tx ul {
+	margin-top : 1em;
+	margin-left : 5em;
+}	
+
+.vivien_tx ul li{
+	line-height : 26px;
+	font-size : 17px;
+}
+.margin0{
+	margin : 0px !important;
+}
+
+.marginTop20{
+	margin-top : 50px !important;
+}
+
+*:focus {
+    outline: 0 !important;
+}
+
+.btn-micDiasble{
+	background: #fff;
+    border: 1px solid #aba0a0;
+    border-radius: 50%;
+    width: 85px;
+    height: 85px;
+    color: #d4c3c3;
+    font-size: 24px;
+    box-shadow: 0 1px 3px 0 rgba(0,0,0,.2), 0 1px 1px 0 rgba(0,0,0,.14), 0 2px 1px -1px rgba(0,0,0,.12);
+	/* float : left; */
+	outline:none;
+}
+.btn-micDiasble:hover, :focus, :active{
+	background: transparent;
+    cursor:not-allowed;
+    color: #716d6d;
+}
+
+.container-radio {
+    display: inline-block;
+    position: relative;
+    padding-left: 23px;
+    margin-bottom: 12px;
+    cursor: pointer;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+.checkmark {
+    position: absolute;
+    top: 3px;
+    left: 0;
+    height: 18px;
+    width: 18px;
+    /* background-color: #eee; */
+    border-radius: 50%;
+    border: 1px solid #ccc;
+}
+.container-radio .checkmark:after {
+    top: 3px;
+    left: 3px;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: #abc445;
+}
+.container-radio input:checked ~ .checkmark:after {
+    display: block;
+}
+.checkmark:after {
+    content: "";
+    position: absolute;
+    display: none;
+}
+.container-radio input {
+    /* position: absolute; */
+    opacity: 0;
+    cursor: pointer;
+}

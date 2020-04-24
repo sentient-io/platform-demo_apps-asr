@@ -1,0 +1,197 @@
+<!doctype html>
+<html>
+
+<head>
+	<meta name="viewport" content="width=device-width,initial-scale=1">	
+	<title>Transcribe Speech</title>
+	<!-- Global site tag (gtag.js) - Google Analytics -->
+	<script async src="https://www.googletagmanager.com/gtag/js?id=UA-149661706-1"></script>
+	<script>
+	  window.dataLayer = window.dataLayer || [];
+	  function gtag(){dataLayer.push(arguments);}
+	  gtag('js', new Date());
+
+	  gtag('config', 'UA-149661706-1');
+	</script>
+
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+	<link rel="shortcut icon" href="https://sentient.io/img/favicon.ico" type="image/x-icon">
+	<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+	<link rel="stylesheet" href="css/style.css">
+	<link rel="stylesheet" href="css/style1.css">
+	
+	<script src="src/recorder.js"></script>
+	<script src="src/Fr.voice.js"></script>
+	<script src="js/jquery.js"></script>
+	<script src="app.js"></script>
+	<script src="js/cont.js"></script>
+	
+	
+	<style>
+
+	
+	.base64 { 
+		background: red !important;
+		background: -webkit-radial-gradient(center, ellipse cover, #ff0000 0%,lightgrey 75%,lightgrey 100%,#7db9e8 100%) !important; 
+		background: -moz-radial-gradient(center, ellipse cover, #ff0000 0%,lightgrey 75%,lightgrey 100%,#7db9e8 100%) !important; 
+		background: radial-gradient(center, ellipse cover, #ff0000 0%,lightgrey 75%,lightgrey 100%,#7db9e8 100%) !important; 
+	}
+	
+	#disableRecord{ 
+		background: gray;
+		background: -webkit-radial-gradient(center, ellipse cover, #363030 0%,lightgrey 75%,lightgrey 100%,#7db9e8 100%); 
+		background: -moz-radial-gradient(center, ellipse cover, #363030 0%,lightgrey 75%,lightgrey 100%,#7db9e8 100%); 
+		background: radial-gradient(center, ellipse cover, #363030 0%,lightgrey 75%,lightgrey 100%,#7db9e8 100%); 
+	}
+	
+	.time-right {
+		color: #747474;
+		float: right;
+	}
+	
+	.time-left {
+		color: #747474;
+		float: left;
+	}
+	
+	.outputcontainerblue {
+	border: 1px solid #eaf4df;
+    background-color: #eaf4df;
+    border-radius: 5px;
+    padding: 10px;
+	font-size: 15px;
+	font-weight: 600;
+	margin-bottom: 8px;	
+    width: 100%;
+	float: left;
+	color: #747474;
+}
+
+.outputcontainergreen {
+		border: 2px solid #dedede;
+		background-color: #f1f1f1;
+		border-radius: 5px;
+		padding: 10px;
+		margin: 10px;
+		font-size:15px;
+		background-image: -webkit-gradient( linear, left bottom, left top, color-stop(0.25, rgb(172,228,75)), color-stop(1, rgb(122,205,71)) );
+		width:75%;
+		float:right;
+}
+
+
+.asrBox{
+	border: 1px solid #dedede; 
+    overflow: auto;
+    height: 440px;
+    border-radius: 3px;
+    padding: 10px;
+    /* background: #f6f6f6; */
+}
+.padding0{
+	padding:0px 0px 0px 0px!important;
+}
+.align-center{
+	text-align: center;
+	}
+	.paddingBTM0{
+		padding-bottom: 20px;
+	}
+	</style>
+</head>
+<body>
+
+
+		<div class="container mt-5">
+		
+		<div class="row">
+			<div class="col-sm-8">
+				<h4 class="title-sent">Transcribe Speech</h4> <span class="tag"><em>DEMO</em></span>
+				<p class="mt-2">This demo app transcribes Singapore-accented spoken English and Mandarin into text.
+					User can choose between transcribing speech to text in English or Mandarin, each powered by separate microservices.</p>
+			</div>
+			<div class="col-sm-4 text-right">
+				<div class="col-sm-4 text-right">
+				<div class="intro-btns">
+                    <div>
+                        <a href="https://platform.sentient.io/solution#automatic_speech_recognition_eng_schi" target="_blank">
+                            <button type="button" class="btn-outline"> More Info </button>
+                        </a>
+                    </div>
+                    <div>
+
+                        <a href="https://github.com/sentient-io/platform-demo_apps-asr.git" target="_blank">
+                            <button type="button" class="btn-solid"> Demo App Code </button>
+                        </a>
+
+                    </div>
+                </div>
+			</div>
+			</div>
+		</div>
+		
+		<div class="row  mt-4">
+			<div class="col-xs-12 text-center">
+				<span>
+					<label class="container-radio">English
+						<input type="radio" value="0" name="language" checked>
+						<span class="checkmark"></span>
+					</label>
+					<label class="container-radio">Mandarin
+						<input type="radio" value="1" name="language">
+						<span class="checkmark"></span>
+					</label>
+				</span>
+				
+				<div id="recordDiv" class="col-md-12 align-center">
+							<div id="record" class="btn btn-micRec startRec">
+							<i class="fa fa-microphone" class="recordButtonStyle"></i>	
+							</div>
+							<div style="padding: 20px 0px 0px 0px;">					
+						<p style="font-size:12px;">Press and hold to speak</p>
+					</div>
+						</div>
+						
+						<div id="disableDiv" style="display:none;">
+							<button  class="btn btn-micDiasble startRec" id="disableRecord">
+							<i class="fa fa-microphone" class="recordButtonStyle"></i></button>
+						</div>
+			</div>
+		</div>
+		
+			<div class="row">
+		
+
+					<div class="row" style="margin-top: 20px";>
+						 
+			<div class="col-md-3 align-center" style="padding: 20px 0px 0px 0px;">             
+
+			 
+										
+				</div>
+
+				
+				<div class="row  mt-4">
+			<div class="col-xs-12">
+				<div class="bg-fade p-2"> Result </div>
+				<div class="asrBox" id="voice_ouputs">
+				<div id="loader"class="loading-spinner">
+                    <img src="loading_spinner.gif" class="loader-img">
+                  </div>
+				</div>
+				
+			</div>
+		</div>
+				
+				<div class="col-md-3">  </div>   
+			
+
+			</div>
+				</div>
+	
+		
+</body>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>  
+	
+
+</html>
