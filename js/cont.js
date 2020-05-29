@@ -16,7 +16,7 @@ function makeWaveform(){
 $(document).ready(function(){
   $(document).on("mousedown", "#record:not(.disabled)", function(){
 	  console.log("ASR REC START");
-
+    setLoder();
 	  $("#record").addClass("base64");
 	  Fr.voice.record($("#live").is(":checked"), function(){
       $(".recordButton").addClass("disabled");
@@ -85,9 +85,9 @@ $(document).ready(function(){
     restore();
   });
 
-  $(document).on("mouseup", "#record:not(.disabled)", function(){
-	  setLoder();
-		console.log("ASR START");
+  $(document).on("mouseup", "#record:not(.disabled)", function(){	 
+    console.log("ASR START");
+    resetLoader();
       Fr.voice.export(function(url){
         console.log("Here is the base64 URL : " + url);
 		getText(url);
@@ -123,9 +123,11 @@ $(document).ready(function(){
   });
 });
 
-
+var countArray = ["0"];
+var y = 1;
 function getText(base64Text) {	
 $("#loader").css("display", "block");
+$('.asr-btn-record').prop('disabled',true);
 
 var start_time = new Date().getTime();
 	var language = $("input[name='language']:checked").val();
@@ -134,6 +136,9 @@ var start_time = new Date().getTime();
 		url="https://api.sentient.io/asr/prod/asrsch";
 	}
 	
+	var lastItem = countArray.pop();
+	var x = parseInt(lastItem);
+
 	 $.ajax({
 		method: 'POST',	
 		headers:{'x-api-key':apiKey},
@@ -141,24 +146,28 @@ var start_time = new Date().getTime();
 		url: url,
 		data: JSON.stringify({"audio" : base64Text, "language" : language}),
 		timeout: 80000,
-	  
 		success: function(res){
+			var count = parseInt(x + y);
+			countArray.push(count);
+			console.log("ajaxCounter" + countArray);
 			var request_time = new Date().getTime() - start_time;
-			$('#voice_ouputs').append("<div class='outputcontainerblue'><p>"+res.text+"</p><span class='time-right'>"+request_time+" ms</span></div>");
+			//$('#voice_ouputs').append("<div class='outputcontainerblue'><p>"+res.text+"</p><span class='time-right'>"+request_time+" ms</span></div>");
+			$('#voice_ouputs').append("<div class='outputcontainerblue'><span class='count'>"+countArray+"</span><p>"+res.text+"</p><span class='time-right'>"+request_time+"</span></div>");
 			$('#voice_ouputs').scrollTop(25000);
-						$("#disableDiv").css("display", "none");
-				$("#recordDiv").css("display", "block");
-				$("#loader").css("display", "none");
+				//$("#disableDiv").css("display", "none");
+				//$("#recordDiv").css("display", "block");
+        $("#loader").css("display", "none");
+        $('.asr-btn-record').prop('disabled',false);
 		},
 		error:function(err){
 			var request_time = new Date().getTime() - start_time;
 			$('#voice_ouputs').append("<div class='outputcontainerblue'><p>"+err.text+"</p><span class='time-right'>"+request_time+" ms</span></div>");
-			$("#disableDiv").css("display", "none");
-			$("#recordDiv").css('display','block');	
-			$("#loader").css("display", "none");			
+			//$("#disableDiv").css("display", "none");
+			//$("#recordDiv").css('display','block');	
+      $("#loader").css("display", "none");			
+      $('.asr-btn-record').prop('disabled',false);
 			
-		}
-		
+		}		
 	});	 
 }
 
@@ -168,7 +177,11 @@ function clearAll() {
 
 function setLoder() {
 	$("#record").removeClass("base64");
-	$("#recordDiv").css('display','none');
-	$("#disableDiv").css("display", "block");
+  $('.asr-btn-record').css('display','none');
+  $('.asr-btn-disable').css('display','flex');
 }
 
+function resetLoader(){
+ $('.asr-btn-record').css('display','flex');
+ $('.asr-btn-disable').css('display','none');
+}

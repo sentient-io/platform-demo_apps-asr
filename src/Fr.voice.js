@@ -28,7 +28,7 @@
 (function(window){
 	window.Fr = window.Fr || {};
 	Fr.voice = {
-	
+
 		/**
 		 * Path to mp3Worker.js
 		 * Only needed if you're gonna use MP3 conversion
@@ -78,7 +78,7 @@
 				this.init();
 				this.init_called = true;
 			}
-			
+
 			var $that = this;
 			navigator.getUserMedia({audio: true}, function(stream){
 
@@ -89,12 +89,12 @@
 				if(output === true){
 					$that.input.connect($that.context.destination);
 				}
-				
-					$that.recorder = new Recorder($that.input, {
-						'mp3WorkerPath': $that.mp3WorkerPath,
-						'recordingCallback': recordingCallback
-					});
-			
+
+				$that.recorder = new Recorder($that.input, {
+					'mp3WorkerPath': $that.mp3WorkerPath,
+					'recordingCallback': recordingCallback
+				});
+
 				$that.stream = stream;
 				$that.recorder.record();
 				finishCallback(stream);
