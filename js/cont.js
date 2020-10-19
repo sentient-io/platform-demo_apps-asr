@@ -1,18 +1,18 @@
+// Pause method
 function restore(){
   $("#record, #live").removeClass("disabled");
   $("#pause").replaceWith('<a class="button one" id="pause">Pause</a>');
   $(".one").addClass("disabled");
   Fr.voice.stop();
 }
-
+// Process
 function makeWaveform(){
   var analyser = Fr.voice.recorder.analyser;
-
+	console.log(analyser);
   var bufferLength = analyser.frequencyBinCount;
   var dataArray = new Uint8Array(bufferLength);
-
- 
 }
+//Process Start Button
 $(document).ready(function(){
   $(document).on("mousedown", "#record:not(.disabled)", function(){
 	  console.log("ASR REC START");
@@ -123,6 +123,7 @@ $(document).ready(function(){
   });
 });
 
+// ASR ENG Process
 var countArray = ["0"];
 var y = 1;
 function getText(base64Text) {	
@@ -138,7 +139,7 @@ var start_time = new Date().getTime();
 	
 	var lastItem = countArray.pop();
 	var x = parseInt(lastItem);
-
+	// Calling ASR ENG api
 	 $.ajax({
 		method: 'POST',	
 		headers:{'x-api-key':apiKey},
@@ -147,40 +148,37 @@ var start_time = new Date().getTime();
 		data: JSON.stringify({"audio" : base64Text, "language" : language}),
 		timeout: 80000,
 		success: function(res){
+			// response
 			var count = parseInt(x + y);
 			countArray.push(count);
-			console.log("ajaxCounter" + countArray);
 			var request_time = new Date().getTime() - start_time;
-			//$('#voice_ouputs').append("<div class='outputcontainerblue'><p>"+res.text+"</p><span class='time-right'>"+request_time+" ms</span></div>");
 			$('#voice_ouputs').append("<div class='outputcontainerblue'><span class='count'>"+countArray+"</span><p>"+res.text+"</p><span class='time-right'>"+request_time+"</span></div>");
 			$('#voice_ouputs').scrollTop(25000);
-				//$("#disableDiv").css("display", "none");
-				//$("#recordDiv").css("display", "block");
-        $("#loader").css("display", "none");
-        $('.asr-btn-record').prop('disabled',false);
+			$("#loader").css("display", "none");
+			$('.asr-btn-record').prop('disabled',false);
 		},
 		error:function(err){
 			var request_time = new Date().getTime() - start_time;
 			$('#voice_ouputs').append("<div class='outputcontainerblue'><p>"+err.text+"</p><span class='time-right'>"+request_time+" ms</span></div>");
-			//$("#disableDiv").css("display", "none");
-			//$("#recordDiv").css('display','block');	
-      $("#loader").css("display", "none");			
-      $('.asr-btn-record').prop('disabled',false);
+		  $("#loader").css("display", "none");			
+		  $('.asr-btn-record').prop('disabled',false);
 			
 		}		
 	});	 
 }
-
+// Clear text method
 function clearAll() {
 	$("#disableDiv").css("display", "none");
 }
 
+// Loader method
 function setLoder() {
-	$("#record").removeClass("base64");
+  $("#record").removeClass("base64");
   $('.asr-btn-record').css('display','none');
   $('.asr-btn-disable').css('display','flex');
 }
 
+// Reset Loader
 function resetLoader(){
  $('.asr-btn-record').css('display','flex');
  $('.asr-btn-disable').css('display','none');
