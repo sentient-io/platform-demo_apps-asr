@@ -132,9 +132,9 @@ $('.asr-btn-record').prop('disabled',true);
 
 var start_time = new Date().getTime();
 	var language = $("input[name='language']:checked").val();
-	var url="https://api.sentient.io/asr/prod/asreng";
+	var url="https://apis.sentient.io/microservices/voice/asr/v0.1/getpredictions";
 	if(language==1){
-		url="https://api.sentient.io/asr/prod/asrsch";
+		url="https://apis.sentient.io/microservices/voice/asrsch/v0.1/getpredictions";
 	}
 	
 	var lastItem = countArray.pop();
