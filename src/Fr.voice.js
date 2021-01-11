@@ -120,7 +120,8 @@
 		 * recorded audio can't be played or exported after.
 		 * @return {Fr.voice}
 		 */
-		stop: function(){
+        stop: function () {
+            wait(500);
 			this.recorder.stop();
 			this.recorder.clear();
 			this.stream.getTracks().forEach(function (track) {
@@ -183,3 +184,10 @@
 		}
 	};
 })(window);
+function wait(ms) {
+    var start = new Date().getTime();
+    var end = start;
+    while (end < start + ms) {
+        end = new Date().getTime();
+    }
+}

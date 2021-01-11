@@ -199,11 +199,12 @@ footer a{
     justify-content: space-between;
     -ms-flex-pack: justify;
     padding: 2rem 1rem;
+    padding-top: 3rem;
 }
 
 .footer-logo{
-    display: flex;
-    display: -ms-flexbox;
+    /* display: flex;
+    display: -ms-flexbox; */
     align-items: center;
     margin-left: 1rem;
 }
@@ -367,7 +368,7 @@ label{
     }
 
     .footer-logo{
-      padding-top: 2rem;
+      /* padding-top: 2rem; */
       justify-content: center;
       -ms-flex-pack: justify;
     }
@@ -443,9 +444,9 @@ label{
 .CF-support{
     background-image: url(../img/demo-app-bg-waveline.png);
     background-repeat: no-repeat;
-    margin: 0 auto;
+    margin: 0;
     background-size: contain;
-    min-height: calc(100vh - 104px);
+    /* min-height: calc(100vh - 104px); */
     background-position: bottom;
     display: flex;
     flex-direction: column;
@@ -454,7 +455,25 @@ label{
  .container-flex{
     flex: 1 1 0;
  }
- 
+ @media screen and (max-width: 991px) {
+    .footer-section{
+        flex-direction: column;
+        flex-flow: column;
+        text-align: center;
+        display: flex;      
+    }
+    .footer-logo {
+        display: flex;
+        display: -ms-flexbox;
+        align-items: center;       
+        text-align: center;
+        display: block;
+        /* margin: 2rem auto; */
+        margin: 0 auto;
+        padding-bottom: 1rem;
+    }
+
+  }
    
  @media screen and (max-width : 768px) {
      
@@ -469,7 +488,7 @@ label{
         }
     
         .footer-logo{
-          padding-top: 2rem;
+          /* padding-top: 2rem; */
           justify-content: center;
           -ms-flex-pack: justify;
         }
@@ -487,8 +506,16 @@ max-width:1170px
   }
 }
 
-@@media (min-width: 768px) {
+/* @media (min-width: 768px) {
 .footer-section{
     max-width: 750px;
   }
+} */
+.content{	
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+}
+.flex-fill{
+    flex: 1 1 auto;
 }
